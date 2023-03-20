@@ -1,0 +1,20 @@
+{
+    "app": {
+        "title": "Feedback App",
+        "slogan": "Your favorite Star Wars characters"
+    },
+    "form": {
+        "title": "How would you rate your service with us?"
+    },
+    "buttons": {
+        "send": "Send"
+    },
+    "placeholders": {
+        "reason": "Tell us something that keeps you coming back"
+    },
+    "stats": {
+        "average": "Ratings Average",
+        "reviews": "{n, plural, =0 {No reviews yet} one {# Review} other {# Reviews}}"
+    },
+    "hello_user": "Hello, {name}!"
+}

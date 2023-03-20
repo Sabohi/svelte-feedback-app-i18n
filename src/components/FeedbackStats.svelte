@@ -1,12 +1,13 @@
 <script>
+    import { _ } from "svelte-i18n";
     import { FeedbackStore } from '../stores';
     $:count = $FeedbackStore.length;
 	$:average = $FeedbackStore.reduce((a, { rating }) => a + rating, 0)/$FeedbackStore.length;
 </script>
 
 <div class="feedback-stats">
-    <h4>{count} Reviews</h4>
-    <h4>Ratings Average: {average || 0}</h4>
+    <h4>{$_("stats.reviews", {values: {n: count}})}</h4>
+    <h4>{$_("stats.average")}: {average || 0}</h4>
 </div>
 
 <style>

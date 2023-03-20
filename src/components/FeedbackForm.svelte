@@ -1,4 +1,5 @@
 <script>
+    import { _ } from "svelte-i18n";
     import { FeedbackStore } from '../stores';
     import {v4 as uuidv4} from 'uuid'; 
     // import { createEventDispatcher } from 'svelte';
@@ -45,14 +46,14 @@
 <Card>
     <header>
         <h2>
-            How would you rate your servive with us?
+            {$_("form.title")}
         </h2>
     </header>
     <form on:submit|preventDefault={handleSubmit}>
         <RatingSelect on:rating-select={handleSelect}/>
         <div class="input-group">
-            <input type="text" placeholder="Tell us something that keeps you coming back" bind:value={text} on:input={handleInput}>
-            <Button type="submit" disabled={btnDisabled}>Send</Button>
+            <input type="text" placeholder={$_("placeholders.reason")} bind:value={text} on:input={handleInput}>
+            <Button type="submit" disabled={btnDisabled}>{$_("buttons.send")}</Button>
         </div>
         {#if message}
         <div class="message">

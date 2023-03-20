@@ -1,9 +1,24 @@
 <script>
-	import { FeedbackStore } from './stores';
+	import {
+		setupI18n,
+		isLocaleLoaded,
+		locale,
+		dir,
+		_,
+	} from "./services/i18n";
+	import LocaleSelector from './components/LocaleSelector.svelte';
+	// import { FeedbackStore } from './stores';
 	import FeebackList from './components/FeebackList.svelte';
   	import FeedbackStats from './components/FeedbackStats.svelte';
 	import FeedbackForm from './components/FeedbackForm.svelte';
 
+	setupI18n();
+	$: if (document.dir !== $dir) {
+		document.dir = $dir;
+	}
+	$: if ($isLocaleLoaded) {
+    	document.title = $_("app.title");
+  	}
 	// let feedback = [
 	// 	{
 	// 		id: 1,
@@ -30,11 +45,26 @@
 	// };
 </script>
 
+{#if $isLocaleLoaded}
 <main class="container">
+	<p>{$_("hello_user", {values: {name: "Adam"}})}</p>
+	<LocaleSelector
+		value={$locale}
+		on:locale-changed={e =>
+		{
+			console.log("============", e.detail, locale);
+			return setupI18n({ withLocale: e.detail }) 
+		}
+			
+		}
+	/>	
 	<FeedbackForm />
 	<FeedbackStats />
 	<FeebackList />
 </main>
+{:else}
+  <p>Loading...</p>
+{/if}
 
 <style>
 </style>
